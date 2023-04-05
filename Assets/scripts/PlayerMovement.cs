@@ -11,14 +11,14 @@ public class PlayerMovement : MonoBehaviour
     //
     // Also, make a camera a child of this object and tilt it the way you want it to tilt.
     // The mouse will let you turn the object, and therefore, the camera.
-
+    public Animator animator;
     // These variables (visible in the inspector) are for you to set up to match the right feel
     public float speed = 12f;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
     public float yaw = 0.0f;
     public float pitch = 0.0f;
-
+    [SerializeField]private float fordwardMovement;
     // This must be linked to the object that has the "Character Controller" in the inspector. You may need to add this component to the object
     public CharacterController controller;
     private Vector3 velocity;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
 
     // So the script knows if you can jump!
-    private bool isGrounded;
+    [SerializeField]private bool isGrounded;
 
     // How high the player can jump
     public float jumpHeight = 2f;
@@ -53,8 +53,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Get the Left/Right and Forward/Back values of the input being used (WASD, Joystick etc.)
         float x = Input.GetAxis("Horizontal");
+        
         float z = Input.GetAxis("Vertical");
- 
+
         // Let the player jump if they are on the ground and they press the jump button
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -76,9 +77,32 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         // This takes the Left/Right and Forward/Back values to build a vector
-        Vector3 move = transform.right * x + transform.forward * z;
- 
+        Vector3 move = transform.right * x + transform.forward * z; 
+        if(isGrounded==false)
+        {
+            animator.SetBool("isgrounded", false);
+        }
+        else
+        {
+            animator.SetBool("isgrounded", true);
+        }
+        
+        if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.D))
+         {
+         animator.SetInteger("action",1);
+         }
+        
+       if (Input.GetKey(KeyCode.S))
+       {
+        animator.SetInteger("action",2);
+       }
+        else if(Input.GetKeyUp(KeyCode.W)||Input.GetKeyUp(KeyCode.S)||Input.GetKeyUp(KeyCode.D)||Input.GetKeyUp(KeyCode.A))
+         {
+            animator.SetInteger("action",0);
+         }
         // Finally, it applies that vector it just made to the character
         controller.Move(move * speed * Time.deltaTime + velocity * Time.deltaTime);
+        
+        
     }
 }
