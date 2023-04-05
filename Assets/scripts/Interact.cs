@@ -33,14 +33,14 @@ public class Interact : MonoBehaviour
                 Debug.DrawRay(start: transform.position, dir: transform.TransformDirection(direction*3), color: Color.blue, duration: 0.1f);
                 Debug.Log("raycast");
                 audioSource.PlayOneShot(buttonClick,1);
-                if(Physics.Raycast(theRay, out RaycastHit hit, 3) && hit.collider.gameObject.layer==9 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+                if(Physics.Raycast(theRay, out RaycastHit hit, 3, IlayerMask))
                 {
                     Debug.Log("ray");
                     
                     hit.collider.TryGetComponent(out currentInteractable);
                     if(currentInteractable)
                     {
-                        currentInteractable.GetComponent<interactable>().OnInteract();
+                       currentInteractable.OnInteract();
                     }
                     
                 }
