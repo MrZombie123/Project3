@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float speedV = 2.0f;
     public float yaw = 0.0f;
     public float pitch = 0.0f;
-    [SerializeField]private float fordwardMovement;
+    //[SerializeField]private bool inputDetected = false;
+    //const string fordwardMovement = "walkFWRD";
     // This must be linked to the object that has the "Character Controller" in the inspector. You may need to add this component to the object
     public CharacterController controller;
     private Vector3 velocity;
@@ -80,25 +81,41 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z; 
         if(isGrounded==false)
         {
+            animator.SetBool("isturning",false);
             animator.SetBool("isgrounded", false);
         }
         else
         {
             animator.SetBool("isgrounded", true);
         }
-        
-        if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.D))
+        if(Input.GetAxis("Mouse X")!= 0)
          {
-         animator.SetInteger("action",1);
+            animator.SetBool("isturning",true);
          }
         
+        if (Input.GetKeyDown(KeyCode.W)||Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.D))
+         { 
+            animator.SetInteger("action",1);
+            animator.SetBool("isturning",false);
+         //animator.Play("walkFWRD");
+        
+         
+          
+         }
+         
        if (Input.GetKey(KeyCode.S))
        {
+        animator.SetBool("isturning",false);
+        animator.SetBool("isturning",false);
         animator.SetInteger("action",2);
+        
+        
        }
-        else if(Input.GetKeyUp(KeyCode.W)||Input.GetKeyUp(KeyCode.S)||Input.GetKeyUp(KeyCode.D)||Input.GetKeyUp(KeyCode.A))
+         if(Input.GetKeyUp(KeyCode.W)||Input.GetKeyUp(KeyCode.S)||Input.GetKeyUp(KeyCode.D)||Input.GetKeyUp(KeyCode.A)||Input.GetAxis("Mouse X")== 0)
          {
+            animator.SetBool("isturning",false);
             animator.SetInteger("action",0);
+            
          }
         // Finally, it applies that vector it just made to the character
         controller.Move(move * speed * Time.deltaTime + velocity * Time.deltaTime);

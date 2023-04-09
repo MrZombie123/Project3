@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: cec96405ac35916479a66e22d611d1d8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - willScream: {fileID: 8300000, guid: 33a1a756738f35c419d36c858fcf762b, type: 3}
+  - audioSource: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
