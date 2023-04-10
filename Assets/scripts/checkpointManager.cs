@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class checkpointManager : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
     
     public GameObject checkpointPosition;
 
-     public Transform checkpointTransform;
+    //public Transform checkpointTransform;
    
     [SerializeField]private float timer = 1;
-    private float timermax = 5;
+    private float timermax = 3;
     [SerializeField]private bool timeron = false;
     private float timermin = 0;
    
@@ -31,18 +31,18 @@ public class checkpointManager : MonoBehaviour
     {
         if(player.GetComponent<playerHealth>().ded == true)
             {
-                
+                Debug.Log("ded: " + player.GetComponent<playerHealth>().ded);
                 timeron = true;
 
-                
-                
+                player.GetComponent<PlayerMovement>().enabled = false;
+                Debug.Log("is control enabled?" + player.GetComponent<PlayerMovement>().enabled);
             }
     }
     public void Update()
     {
         if (timeron == true)
         {
-            checkpointTransform = checkpointPosition.transform;
+            Transform checkpointTransform = checkpointPosition.transform;
             Vector3 checkpointVector = checkpointPosition.transform.position;
             timer -= Time.deltaTime;
             float seconds = Mathf.FloorToInt(timer % 60);
@@ -52,12 +52,15 @@ public class checkpointManager : MonoBehaviour
                     
                     Debug.Log("respawn code in progress");
 
-                    GameObject.FindGameObjectWithTag("Player").transform.position=checkpointVector;
+                    player.transform.position=checkpointVector;
 //                  this is where the player should move
 
                     player.GetComponent<playerHealth>().ded = false;
                     timeron = false;
+                    player.GetComponent<PlayerMovement>().enabled = true;
+                    Debug.Log("is control enabled?" + player.GetComponent<PlayerMovement>().enabled);
                     }
+
         }
         
     }

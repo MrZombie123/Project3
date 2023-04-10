@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     // Also, make a camera a child of this object and tilt it the way you want it to tilt.
     // The mouse will let you turn the object, and therefore, the camera.
     public Animator animator;
+    [SerializeField]private GameObject player;
     // These variables (visible in the inspector) are for you to set up to match the right feel
     public float speed = 12f;
     public float speedH = 2.0f;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     // So the script knows if you can jump!
     [SerializeField]private bool isGrounded;
-
+    
     // How high the player can jump
     public float jumpHeight = 2f;
 
@@ -48,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
  
     private void Update()
     {
+        if(player.GetComponent<playerHealth>().ded == false)
+        {
         // These lines let the script rotate the player based on the mouse moving
         yaw += speedH * Input.GetAxis("Mouse X");
         pitch -= speedV * Input.GetAxis("Mouse Y");
@@ -93,10 +96,10 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isturning",true);
          }
         
-        if (Input.GetKeyDown(KeyCode.W)||Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.D))
+        if (gameObject.transform.forward != new Vector3(0,0,0))
          { 
             animator.SetInteger("action",1);
-            animator.SetBool("isturning",false);
+            //animator.SetBool("isturning",false);
          //animator.Play("walkFWRD");
         
          
@@ -120,6 +123,11 @@ public class PlayerMovement : MonoBehaviour
         // Finally, it applies that vector it just made to the character
         controller.Move(move * speed * Time.deltaTime + velocity * Time.deltaTime);
         
-        
+        }
+        else
+        {
+            Debug.Log("DED");
+            animator.SetBool("DED",true);
+        }
     }
 }
