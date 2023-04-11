@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     //
     // Also, make a camera a child of this object and tilt it the way you want it to tilt.
     // The mouse will let you turn the object, and therefore, the camera.
-    public Animator animator;
+    //public Animator animator;
     [SerializeField]private GameObject player;
     // These variables (visible in the inspector) are for you to set up to match the right feel
     public float speed = 12f;
@@ -49,8 +49,8 @@ public class PlayerMovement : MonoBehaviour
  
     private void Update()
     {
-        if(player.GetComponent<playerHealth>().ded == false)
-        {
+        //if(player.GetComponent<playerHealth>().ded == false)
+        //{
         // These lines let the script rotate the player based on the mouse moving
         yaw += speedH * Input.GetAxis("Mouse X");
         pitch -= speedV * Input.GetAxis("Mouse Y");
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
         // This takes the Left/Right and Forward/Back values to build a vector
         Vector3 move = transform.right * x + transform.forward * z; 
-        if(isGrounded==false)
+        /*if(isGrounded==false)
         {
             animator.SetBool("isturning",false);
             animator.SetBool("isgrounded", false);
@@ -119,15 +119,16 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isturning",false);
             animator.SetInteger("action",0);
             
-         }
+         }*/
         // Finally, it applies that vector it just made to the character
         controller.Move(move * speed * Time.deltaTime + velocity * Time.deltaTime);
-        
+        /*
         }
         else
         {
             Debug.Log("DED");
             animator.SetBool("DED",true);
-        }
+        }*/
+    
     }
 }

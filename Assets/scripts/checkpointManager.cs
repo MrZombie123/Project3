@@ -11,10 +11,10 @@ public class checkpointManager : MonoBehaviour
     //public Transform checkpointTransform;
    
     [SerializeField]private float timer = 1;
-    private float timermax = 3;
+    private float timermax = 1;
     [SerializeField]private bool timeron = false;
     private float timermin = 0;
-   
+    
     
     public void OnTriggerEnter(Collider player)
     { 
@@ -46,17 +46,21 @@ public class checkpointManager : MonoBehaviour
             Vector3 checkpointVector = checkpointPosition.transform.position;
             timer -= Time.deltaTime;
             float seconds = Mathf.FloorToInt(timer % 60);
-            if(timer  < timermin || Input.GetKey("e"))
+            if(timer  <= timermin || Input.GetKey("e"))
                     {
+                    
                     timer = timermax;
                     
                     Debug.Log("respawn code in progress");
 
                     player.transform.position=checkpointVector;
 //                  this is where the player should move
-
-                    player.GetComponent<playerHealth>().ded = false;
+                    Debug.Log(checkpointVector);
+                    
                     timeron = false;
+                    float addHealth = 3;
+                    player.GetComponent<playerHealth>().ded = false;
+                    player.GetComponent<playerHealth>().AddHealth(addHealth) ;
                     player.GetComponent<PlayerMovement>().enabled = true;
                     Debug.Log("is control enabled?" + player.GetComponent<PlayerMovement>().enabled);
                     }
