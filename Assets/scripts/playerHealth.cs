@@ -12,7 +12,8 @@ public class playerHealth : MonoBehaviour
     //[SerializeField]private Slider slider;
     public checkpointManager checkpointManagerOBJ;
     public GameObject Canvas;
-    
+    [SerializeField]private AudioSource audioSource;
+    [SerializeField]private AudioClip willScream;
     public void RemoveHealth(float removeHealth)
     {
         health -= 0.1f;
@@ -29,7 +30,7 @@ public class playerHealth : MonoBehaviour
     }
     public void BecomeDed()
     {
-        //audioSource.PlayOneShot(willScream,1);
+        audioSource.PlayOneShot(willScream,1);
         ded = true;
         health = 0f;
         UpdateUI();
