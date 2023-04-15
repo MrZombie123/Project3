@@ -32,7 +32,7 @@ public class TutorialPopup : MonoBehaviour
              fadeIn += 0.1f;
              canvasGroup.alpha = fadeIn;
 
-        yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.01f);
         }
 
     }

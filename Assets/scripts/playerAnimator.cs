@@ -23,24 +23,31 @@ public class playerAnimator : MonoBehaviour
     void Update()
     {
         isGrounded = controller.isGrounded;
+        
         xAxis= Input.GetAxis("Horizontal");
         zAxis= Input.GetAxis("Vertical");
         mouseAxis= Input.GetAxis("Mouse X");
-        if(isGrounded==false && gameObject.GetComponent<playerHealth>().ded==false)
+        bool ded = gameObject.GetComponent<playerHealth>().ded;
+        animator.SetBool("isturning",!ded&&mouseAxis != 0);
+        if(isGrounded==false && ded==false)
         {
-            animator.SetBool("isturning",false);
+
+            //animator.SetBool("isturning",false);
             animator.SetBool("isgrounded", false);
         }
          else
         {
             animator.SetBool("isgrounded", true);
         }
-        if(gameObject.GetComponent<playerHealth>().ded==true)
+        if(ded==true)
         {
+           // animator.SetBool("isturning",false);
             animator.SetBool("DED", true);
         }
-        else
+        
+        if(ded==false)
         {
+             //animator.SetBool("isturning",false);
              animator.SetBool("DED", false);
         }
         
@@ -51,23 +58,21 @@ public class playerAnimator : MonoBehaviour
         case float n when zAxis >= .1:
          
             animator.SetInteger("action",1);
-            animator.SetBool("isturning",false);
+           // animator.SetBool("isturning",false);
          break;
          
          case float n when zAxis <= -.1:
          
             animator.SetInteger("action",2);
-            animator.SetBool("isturning",false);
+           // animator.SetBool("isturning",false);
          
           break;
 
-        case float n when mouseAxis != 0:
-            animator.SetBool("isturning",true);
-        break;
+        
 
          default:
          animator.SetInteger("action",0);
-        animator.SetBool("isturning",false);
+       // animator.SetBool("isturning",false);
         break;
         }
     }

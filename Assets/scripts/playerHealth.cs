@@ -25,11 +25,12 @@ public class playerHealth : MonoBehaviour
     }
     public void AddHealth(float addHealth)
     {
-        health += 3f;
+        health += maxHealth;
          UpdateUI();
     }
     public void BecomeDed()
     {
+        
         audioSource.PlayOneShot(willScream,1);
         ded = true;
         health = 0f;

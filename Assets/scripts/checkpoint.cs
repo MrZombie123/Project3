@@ -23,6 +23,7 @@ public class checkpoint : MonoBehaviour
        if (player.gameObject.CompareTag("Player"))
        {
             checkpointManagerOBJ.checkpointPosition = this.gameObject;
+            checkpointManagerOBJ.CurrentCPP = transform.position;
             Debug.Log("CHECKPOINT!!");
             collider.enabled = false;
        }
