@@ -17,25 +17,25 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
-    public float yaw = 0.0f;
+    private float yaw = 0.0f;
     public float pitch = 0.0f;
     //[SerializeField]private bool inputDetected = false;
     //const string fordwardMovement = "walkFWRD";
     // This must be linked to the object that has the "Character Controller" in the inspector. You may need to add this component to the object
     public CharacterController controller;
-    private Vector3 velocity;
+    public Vector3 velocity;
 
     // Customisable gravity
-    public float gravity = -20f;
+    private float gravity = -20f;
 
     // Tells the script how far to keep the object off the ground
     public float groundDistance = 0.4f;
 
     // So the script knows if you can jump!
-    [SerializeField]private bool isGrounded;
+    [SerializeField]public bool isGrounded;
     
     // How high the player can jump
-    public float jumpHeight = 2f;
+    private float jumpHeight = 2f;
 
     private void Start()
     {
