@@ -17,13 +17,14 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
-    private float yaw = 0.0f;
+    public float yaw = 0.0f;
     public float pitch = 0.0f;
     //[SerializeField]private bool inputDetected = false;
     //const string fordwardMovement = "walkFWRD";
     // This must be linked to the object that has the "Character Controller" in the inspector. You may need to add this component to the object
     public CharacterController controller;
     public Vector3 velocity;
+    // jarrods' note, i needed to make this public so that i can acess it in the jumppad :)
 
     // Customisable gravity
     private float gravity = -20f;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
 
     // So the script knows if you can jump!
-    [SerializeField]public bool isGrounded;
+    [SerializeField]private bool isGrounded;
     
     // How high the player can jump
     private float jumpHeight = 2f;

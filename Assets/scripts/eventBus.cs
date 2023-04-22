@@ -31,4 +31,17 @@ public class eventBus : MonoBehaviour
         {
             LightGoOff();
         }
+    
+    public event Action BlockSwitchOn;
+    public void BlockSwitchOnTrigger()
+    {
+        BlockSwitchOn();
+    }
+
+    public event Action BlockSwitchOff;
+    public void BlockSwitchOffTrigger()
+    {
+        BlockSwitchOff();
+        Debug.Log("hello?");
+    }
 }

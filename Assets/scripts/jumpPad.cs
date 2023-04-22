@@ -6,26 +6,41 @@ public class jumpPad : MonoBehaviour
 {
     [SerializeField] private Transform[] fansTransform= new Transform[2]; 
     private Transform fanTransform;
-    private Quaternion quat;
+//    private Quaternion quat;
     [SerializeField]private PlayerMovement player;
-    [SerializeField] private float fansSpeed = 512f;
+    [SerializeField] private float fansSpeed = 16f;
     [SerializeField]private Collider collider;
     public float thrust = 32f;
     public Rigidbody rb;
-    
+    public ParticleSystem[] particleArray = new ParticleSystem[2];
+    public ParticleSystem particle;
     // Start is called before the first frame update
     void Start()
     {
-        
-        fanTransform = fansTransform[fansTransform.Length-1];
-        quat = fanTransform.rotation;
+        particle = particleArray[particleArray.Length-1];
+ //       fanTransform = fansTransform[fansTransform.Length-1];
+ //       quat = fanTransform.rotation;
       
     }
 
     // Update is called once per frame
     void Update()
     {
- //      quat.Euler(fansSpeed*0,1,0*Time.deltaTime);
+        PlayParticle();
+//        fanTransform.Rotate(0f,1f*fansSpeed*Time.deltaTime,0f);
+//        Debug.Log(quat);
+       
+    }
+    IEnumerator PlayParticle()
+    {
+        for (int i = 0; i < 1; i++)
+        {
+        Debug.Log("particle is"+particle);    
+        particle.Play();
+        
+        yield return new WaitForSeconds(2);
+        }
+
     }
     void OnTriggerStay(Collider collider)
     {
