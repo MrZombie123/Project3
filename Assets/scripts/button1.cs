@@ -7,29 +7,37 @@ public class button1 : interactable
 {
     [SerializeField]AudioSource audioSource;
     [SerializeField]AudioClip buttonpressed;
-//    private bool buttonPressed=false;
+    [SerializeField]private bool buttonPressed=false;
 //    public string objectAnimation;
 //    public Animator myObject;
     // Start is called before the first frame update
-    [SerializeField]private float time = 2;
+    public float time = 2;
+    public UImanager uiManager;
     [SerializeField]private float maxTime = 2;
     
     public override void OnInteract()
     {
+        
+        
+        Debug.Log ("testing interact");
+        
+       if (buttonPressed==false)
+       {
         time = maxTime;
         audioSource.PlayOneShot(buttonpressed,1);
-        Debug.Log ("testing interact");
         eventBus.bus.BlockSwitchOnTrigger();
-       
+        buttonPressed=true;
        StartCoroutine(timesTicking());
-        
+       }
         
     }
     IEnumerator timesTicking()
     {
+        
         for (int i = 0; i < maxTime; i++)
         {
-            
+        float textFloat = time;
+        uiManager.GetComponent<UImanager>().DisplayTime(textFloat);    
         time--;
         
         yield return new WaitForSeconds(1);
@@ -39,6 +47,7 @@ public class button1 : interactable
                 {
                     Debug.Log("hello 1?");
                     eventBus.bus.BlockSwitchOffTrigger();
+                    buttonPressed=false;
                 }
                 
     }

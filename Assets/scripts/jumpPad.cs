@@ -6,19 +6,20 @@ public class jumpPad : MonoBehaviour
 {
     [SerializeField] private Transform[] fansTransform= new Transform[2]; 
     private Transform fanTransform;
-//    private Quaternion quat;
+    [SerializeField]private AudioSource audioSource;
+    [SerializeField]private AudioClip jump;
     [SerializeField]private PlayerMovement player;
     [SerializeField] private float fansSpeed = 16f;
     [SerializeField]private Collider collider;
     public float thrust = 32f;
-    public Rigidbody rb;
+//    public Rigidbody rb;
     public ParticleSystem[] particleArray = new ParticleSystem[2];
     public ParticleSystem particle;
     // Start is called before the first frame update
     void Start()
     {
-        particle = particleArray[particleArray.Length-1];
- //       fanTransform = fansTransform[fansTransform.Length-1];
+ //       particle = particleArray[particleArray.Length-1];
+       
  //       quat = fanTransform.rotation;
       
     }
@@ -26,9 +27,14 @@ public class jumpPad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayParticle();
-//        fanTransform.Rotate(0f,1f*fansSpeed*Time.deltaTime,0f);
-//        Debug.Log(quat);
+        for (int i = 0; i < fansTransform.Length; i++)
+       {
+        fanTransform = fansTransform[i];
+        fanTransform.Rotate(0f,1f*fansSpeed*Time.deltaTime,0f);
+       }
+//        PlayParticle();
+        
+
        
     }
     IEnumerator PlayParticle()
@@ -48,7 +54,7 @@ public class jumpPad : MonoBehaviour
         {
             player.velocity.y += thrust;
             Debug.Log("should jump now");
-            
+            audioSource.PlayOneShot(jump,1);
         }
       
         if(collider.TryGetComponent<Rigidbody>(out Rigidbody rb))

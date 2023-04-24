@@ -9,6 +9,10 @@ public class pit : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter(Collider player)
     {
-        player.GetComponent<playerHealth>().BecomeDed();
+        if(player.tag == "Player")
+        {
+            player.GetComponent<playerHealth>().BecomeDed();
+        }
+        
     }
 }
