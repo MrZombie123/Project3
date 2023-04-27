@@ -32,14 +32,14 @@ public class mainmen : MonoBehaviour
     }
     IEnumerator FadeIn()
     {
-        float fadeout = 0f;
+        float fadeIn = 0f;
         
         for (int i = 0; i < 20; i++)
         {
             
-            Debug.Log(fadeout);
-             fadeout += 0.05f;
-             canvasGroup.alpha = fadeout;
+            Debug.Log(fadeIn);
+             fadeIn += 0.05f;
+             canvasGroup.alpha = fadeIn;
 
             yield return new WaitForSeconds(0.01f);
         }
@@ -47,14 +47,14 @@ public class mainmen : MonoBehaviour
     }
     IEnumerator FadeOut()
     {
-        float fadeIn = 1f;
+        float fadeOut = 1f;
 //        hasBeenPressed = true;
         for (int i = 0; i < 20; i++)
         {
             
-            Debug.Log(fadeIn);
-             fadeIn -= 0.05f;
-             canvasGroup.alpha = fadeIn;
+            Debug.Log(fadeOut);
+             fadeOut -= 0.05f;
+             canvasGroup.alpha = fadeOut;
 
             yield return new WaitForSeconds(0.01f);
         }

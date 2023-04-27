@@ -14,20 +14,23 @@ public class button1 : interactable
     public float time = 2;
     public UImanager uiManager;
     [SerializeField]private float maxTime = 2;
+    [SerializeField]private Animator animator;
     
     public override void OnInteract()
     {
         
         
-        Debug.Log ("testing interact");
+//        Debug.Log ("testing interact");
         
        if (buttonPressed==false)
        {
+        animator.SetBool("isPressed", true);
         time = maxTime;
         audioSource.PlayOneShot(buttonpressed,1);
         eventBus.bus.BlockSwitchOnTrigger();
         buttonPressed=true;
        StartCoroutine(timesTicking());
+      
        }
         
     }
@@ -47,7 +50,8 @@ public class button1 : interactable
                 {
                     Debug.Log("hello 1?");
                     eventBus.bus.BlockSwitchOffTrigger();
-                    buttonPressed=false;
+                    buttonPressed=false; 
+                    animator.SetBool("isPressed", false);
                 }
                 
     }
