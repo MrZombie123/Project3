@@ -8,20 +8,24 @@ public class TutorialPopup : MonoBehaviour
     public float fadeIn = 0.1f;
     public float fadeInMax = 10f;
     [SerializeField] private bool HBSeen = false;
-    public Collider player;
+    public GameObject player;
    
-   public void OnTriggerEnter(Collider player)
+   public void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.tag == "Player")
+       { 
         Debug.Log("trigger collide");
         if(HBSeen == false)
-        {
-            StartCoroutine(Fade());
-           
-                //fadeIn += Time.deltaTime;
+            {
+                player.GetComponent<PlayerMovement>().enabled = false;
+                StartCoroutine(Fade());
+            Cursor.visible = true;
+                    //fadeIn += Time.deltaTime;
                 
-            //canvasGroup.alpha = fadeIn / (fadeInMax * 1.0f);
-            HBSeen = true;
-           
+                //canvasGroup.alpha = fadeIn / (fadeInMax * 1.0f);
+                HBSeen = true;
+            
+            }
         }
     }
     IEnumerator Fade()
@@ -39,5 +43,7 @@ public class TutorialPopup : MonoBehaviour
     public void OnButtonClick()
     {
         canvasGroup.alpha = 0f;
+        Cursor.visible = false;
+        player.GetComponent<PlayerMovement>().enabled = true;
     }
 }

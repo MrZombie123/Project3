@@ -10,12 +10,12 @@ public class checkpoint : MonoBehaviour
 
     public SphereCollider collider;
     
-    
+    [SerializeField]private Animator animator;
     
     public void Awake()
     {
-        
-        checkpointManagerOBJ = GameObject.FindGameObjectWithTag("checkpoint").GetComponent<checkpointManager>();
+        animator = gameObject.GetComponent<Animator>();
+//        checkpointManagerOBJ = GameObject.FindGameObjectWithTag("checkpoint").GetComponent<checkpointManager>();
     }
     
     void OnTriggerEnter(Collider player)
@@ -26,6 +26,11 @@ public class checkpoint : MonoBehaviour
             checkpointManagerOBJ.CurrentCPP = transform.position;
             Debug.Log("CHECKPOINT!!");
             collider.enabled = false;
+            if(animator != null)
+            {
+            animator.SetBool("grabbed", true);
+            }
+            
        }
         
     }

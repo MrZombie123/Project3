@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interact: 101
-  sceneNumber: 1
+  sceneNumber: 0100000002000000
   hasBeenPressed: 0
   canvasGroup: {fileID: 1573818233}
 --- !u!1 &1573818229

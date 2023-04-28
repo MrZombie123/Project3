@@ -14,7 +14,10 @@ public class UImanager : MonoBehaviour
     public float textFloat;
 
     // Start is called before the first frame update
-
+    void Start()
+    {
+        Cursor.visible = false;
+    }
     // Update is called once per frame
     public void UpdateUI()
     {
@@ -33,6 +36,7 @@ public class UImanager : MonoBehaviour
         float minutes = Mathf.FloorToInt(textFloat / 60); 
         float seconds = Mathf.FloorToInt(textFloat % 60);
         text.text = string.Format("{00:00}:{01:00}", minutes, seconds);
+        
         if(textFloat <= 0)
         {
             audioSource.PlayOneShot(fart,1);

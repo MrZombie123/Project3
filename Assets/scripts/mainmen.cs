@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class mainmen : MonoBehaviour
 {
     [SerializeField]private KeyCode interact = KeyCode.E;
-    public int sceneNumber = 0;
+    public int[] sceneNumber;
     [SerializeField]private bool hasBeenPressed = false;
      [SerializeField] private CanvasGroup canvasGroup;
     //public float fadein = 0.1f;
@@ -18,6 +18,10 @@ public class mainmen : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if(Input.GetKeyDown(interact))
         {
             
@@ -43,7 +47,10 @@ public class mainmen : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-        SceneManager.LoadScene(sceneNumber);
+        for (int i = 0; i < sceneNumber.Length; i++)
+        {
+            SceneManager.LoadScene(sceneNumber[i]);
+        }
     }
     IEnumerator FadeOut()
     {

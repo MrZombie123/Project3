@@ -48,13 +48,25 @@ public class jumpPad : MonoBehaviour
         }
 
     }
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            Debug.Log("should jump now");
+            audioSource.PlayOneShot(jump,1);
+        }
+        if(collider.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            audioSource.PlayOneShot(jump,1);
+        }
+    }
     void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.tag == "Player")
         {
             player.velocity.y += thrust;
             Debug.Log("should jump now");
-            audioSource.PlayOneShot(jump,1);
+ //           audioSource.PlayOneShot(jump,1);
         }
       
         if(collider.TryGetComponent<Rigidbody>(out Rigidbody rb))

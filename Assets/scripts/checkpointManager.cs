@@ -47,13 +47,7 @@ public class checkpointManager : MonoBehaviour
     
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = CurrentCPP;
-            Debug.Log("YES LOG");
-            player.GetComponent<CharacterController>().enabled = true;
-        }
+        
         
         if (timeron == true)
         {
