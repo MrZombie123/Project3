@@ -338,7 +338,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -408.15}
-  m_SizeDelta: {x: 575.5, y: 29.3}
+  m_SizeDelta: {x: 603.06, y: 51.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &905183943
 MonoBehaviour:
@@ -362,7 +362,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1752999ffd68cc142a853fed525d0ab3, type: 3}
-    m_FontSize: 24
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -373,7 +373,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SOUNDS FROM HALF LIFE,PIZZA TOWER, BEAVIS AND BUTTHEAD, THE DIMSONS, FREESOUND.
+  m_Text: 'SOUNDS FROM FREESOUND.
+
+
+    SONGS BY henry purcell and gounod'
 --- !u!222 &905183944
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -422,7 +425,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 181.97, y: 30}
+  m_SizeDelta: {x: 603.06, y: 51.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1095673751
 MonoBehaviour:
@@ -462,7 +465,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1752999ffd68cc142a853fed525d0ab3, type: 3}
-    m_FontSize: 24
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -809,7 +812,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -265.25}
-  m_SizeDelta: {x: 255.7, y: 30}
+  m_SizeDelta: {x: 603.06, y: 51.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1755529941
 MonoBehaviour:
@@ -833,7 +836,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1752999ffd68cc142a853fed525d0ab3, type: 3}
-    m_FontSize: 24
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
